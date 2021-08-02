@@ -50,6 +50,24 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+AUTH_USER_MODEL = 'app.CustomUser'
+
+LOGIN_URL = 'accounts/login'
+
+LOGIN_REDIRECT_URL = 'index'
+
+ACCOUNT_FORMS = {'signup': 'app.models.CustomSignupForm'}
+
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+
+ACCOUNT_EMAIL_REQUIRED = True 
+
+ACCOUNT_EMAIL_UNIQUE  = True 
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -90,6 +108,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ecom.wsgi.application'
 
 
+
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -99,7 +118,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
