@@ -5,22 +5,80 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
+<br>
+<br>
+<br>
+<br>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+
 
 <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+  <div id="form_div">
+  <h2 class="topic">{% trans "Sign Up" %}</h2>
+  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
   {% csrf_token %}
-  <!-- {{ form.as_p }} -->
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
+  <fieldset>
+  <legend>User Details</legend>
+  <label for="id_email">E-mail:</label><br>
+  {{form.email}}<br>
+  <label for="id_">Username:</label><br>
+  {{form.username}}<br>
+  <label for="id_phone">phone:</label><br>
+  {{form.phone}}<br>
+  <label for="address">address:</label><br>
+  {{form.address}}<br>
+  <label for="id_state">State:</label><br>
+  {{form.state}}<br>
+  <label for="id_district">District:</label><br>
+  {{form.district}}<br>
+  <label for="id_pincode">Pincode:</label><br>
+  {{form.pincode}}<br>
+  </fieldset>
+  <fieldset>
+    <legend>Company Details</legend>
+  <div id="owner_div">
+  <label id="id_is_owner_label" for="id_is_owner">Do yo have own service center :</label>
+  {{form.is_owner}}
+  </div>
+  <label for="id_company_name">Center name:</label><br>
+  {{form.company_name}}<br>
+  </fieldset>
+  {{form.errors}}
+  <div>
+    <fieldset>
+      <legend>Create Password</legend>
+     <div>
+
+        <label for="id_password1">Password:</label><br>
+        {{form.password1}}<br>
+        <label for="id_password2">Confirm Password:</label><br>
+        {{form.password2}}<br>
+     </div>
+    </fieldset>
+
+    <button id="submit_button" class="submit_buttons" type="submit">{% trans "Sign Up" %} &raquo;</button>
+    <a  class="submit_buttons"  id="" href="">Cancel</a>
+  </div>
+
+  </div>
 </form>
 
 <script type="text/javascript">
   var is_owner = document.getElementById("id_is_owner");
   is_owner.required = false;
+  var phone = document.getElementById("id_phone");
+  phone.placeholder = "Phone Number";
+  var address = document.getElementById("id_address");
+  address.placeholder = "Address";
+  var State = document.getElementById("id_state");
+  State.placeholder = "State";
+  var District = document.getElementById("id_district");
+  District.placeholder = "State";
+  var Pincode = document.getElementById("id_pincode");
+  Pincode.placeholder = "Pincode";
+  var Company = document.getElementById("id_company_name");
+  Company.placeholder = "Company";
 </script>
 
 {% endblock %}

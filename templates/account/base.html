@@ -1,14 +1,170 @@
+
+<!-- 
+
+
+yellow = #F4ECA4
+
+green = #93e3ab
+
+black = #253136
+
+ -->
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>{% block head_title %}{% endblock %}</title>
     {% block extra_head %}
     {% endblock %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/base.css' %}">
+    <style type="text/css">
+
+    body,h1,h2,h3,h4,h5,ul{
+      margin: 0px;
+    }
+    #head_div{
+      height: 50px;
+      background-color: #93e3ab ;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+    #auth_button_div{
+      margin-right: 20px;
+    }
+    .auth_buttons{
+      padding: 10px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bolder;
+      color: #253136 ;
+      border : solid 2px #253136;
+      border-radius: 15px;
+      margin: 10px 2px;
+    }
+    ul{
+
+      list-style: none;
+
+    }
+    #login_form{
+
+      
+
+
+    }
+    li{
+      display: inline;
+    }
+
+    label{
+      color:#253136 ;
+      padding: 10px;
+      margin: 2px;
+      font-weight: bolder;
+    }
+
+    input,textarea,p{
+      color:#253136 ;
+      padding: 10px;
+      margin: 7px;
+      font-weight: bolder;
+      width: 400px;
+    }
+
+    label{
+      font-size: 18px;
+    }
+
+    input,textarea{
+      border-radius: 15px;
+      border: 2px solid #253136;
+      font-weight: bolder;
+      background-color: rgb(210 243 220);
+    }
+
+    #form_div{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 500px;
+    }
+
+    form{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+
+    .topic,legend{
+      color:#253136 ;
+    }
+
+    #owner_div{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: left;
+    }
+
+    #id_is_owner{
+      padding: 0px;
+      margin: 0px;
+      width: 50px;
+    }
+
+    #id_is_owner_label{
+      width: none;
+    }
+    #logout_div{
+      display: flex;
+      flex-direction: column;
+      align-items: left;
+      justify-content: space-around;
+      width: 50%;
+    }
+    .submit_buttons{
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid  #253136;
+      border-radius: 15px;
+      font-weight: bolder;
+      text-decoration: none;
+      color: #253136;
+      background-color: #93e3ab;
+
+    }
+
+    #submit_button{
+      background-color: #F4ECA4 ;
+
+    }
+    fieldset{
+      padding: 30px;
+      margin: 20px;
+      border-radius: 20px;
+    }
+    #id_remember{
+      width: 50px;
+    }
+    #remember_div{
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      align-items: center;
+
+    }
+
+    </style>
   </head>
   <body>
     {% block body %}
 
-    {% if messages %}
+ <!--    {% if messages %}
     <div>
       <strong>Messages:</strong>
       <ul>
@@ -17,24 +173,50 @@
         {% endfor %}
       </ul>
     </div>
-    {% endif %}
-
+    {% endif %} --> 
     <div>
-      <strong>Menu:</strong>
-      <ul>
+    <div id='head_div'>
+    <div>
+      
+    </div>
+
+    <div id="auth_button_div">
+      <ul >
         {% if user.is_authenticated %}
-        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+        <li ><a class="auth_buttons" href="{% url 'account_logout' %}">Sign Out</a></li>
         {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+        <li><a class="auth_buttons" href="{% url 'account_login' %}">Login</a></li>
+        <li><a class="auth_buttons" href="{% url 'account_signup' %}">Sign Up</a></li>
         {% endif %}
       </ul>
     </div>
+    </div>
+    </div>
+
+
     {% block content %}
     {% endblock %}
     {% endblock %}
     {% block extra_body %}
     {% endblock %}
   </body>
+  <script type="text/javascript">
+    window.addEventListener("scroll", (event) => {
+    var scroll = this.scrollY;
+    console.log(scroll);
+    if(scroll > 50){
+      document.getElementById("head_div").style.position = "fixed";
+      document.getElementById("head_div").style.top = "0px";
+      document.getElementById("head_div").style.left = "0px";
+      
+    }
+    else{
+      document.getElementById("head_div").style.position = "absolute";
+      document.getElementById("head_div").style.top = "0px";
+      document.getElementById("head_div").style.left = "0px";
+    }
+    });
+
+
+  </script>
 </html>

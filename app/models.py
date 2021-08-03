@@ -10,7 +10,7 @@ class CustomUser(AbstractUser):
     address = models.TextField(max_length=300,blank=False,null=False)
     state = models.CharField(max_length=100,blank=False , null = False)
     district = models.CharField(max_length=200, blank=False , null = False)
-    pincode = models.CharField(max_length=200)
+    pincode = models.CharField(max_length=200,blank = True , null = True)
     is_owner = models.BooleanField(blank = True , null = True)
 
 class CustomSignupForm(SignupForm):
@@ -30,5 +30,6 @@ class CustomSignupForm(SignupForm):
         user.district = self.cleaned_data['district']
         user.pincode = self.cleaned_data['pincode']
         user.is_owner = self.cleaned_data['is_owner']
+        user.company_name = self.cleaned_data['company_name']
         user.save()
         return user
