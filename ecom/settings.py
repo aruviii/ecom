@@ -52,7 +52,7 @@ SITE_ID = 1
 
 AUTH_USER_MODEL = 'app.CustomUser'
 
-LOGIN_URL = 'accounts/login'
+# LOGIN_URL = 'accounts/login'
 
 LOGIN_REDIRECT_URL = 'index'
 
@@ -66,7 +66,6 @@ ACCOUNT_EMAIL_UNIQUE  = True
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

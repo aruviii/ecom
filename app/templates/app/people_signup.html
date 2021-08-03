@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>SignUp</title>
+</head>
+<body>
+	<h1>signup</h1>
+<form method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+<!-- 	<label for="id_email">E-mail:</label><br>
+	{{form.email}}<br>
+	<label for="id_username">E-mail:</label><br>
+	{{form.username}}<br>
+	<label for="id_phone">phone:</label><br>
+	{{form.phone}}<br>
+	<label for="address">address:</label><br>
+	{{form.address}}<br>
+	<label for="id_state">state:</label><br>
+	{{form.state}}<br>
+	<label for="id_district">district:</label><br>
+	{{form.district}}<br>
+	<label for="id_pincode">pincode:</label><br>
+	{{form.pincode}}<br>
+	<label for="id_company_name">company_name:</label><br>
+	{{form.company_name}}<br>
+	<label for="id_is_owner">is_owner:</label><br>
+	{{form.is_owner}}<br>
+ -->	<input type="submit"><br>
+
+ <script type="text/javascript">
+ 	var company_name = document.getElementById("id_company_name");
+ 	company_name.value = "none"; 
+ 	company_name.style.display = "none";
+ 	var is_owner = document.getElementById("id_is_owner");
+ 	is_owner.checked = false;
+ 	is_owner.required = false;
+ 	is_owner.style.display = "none";
+ 	console.log(company_name.value,is_owner.required);
+ </script>
+
+</form>
+</body>
+</html>
