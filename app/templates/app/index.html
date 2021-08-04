@@ -1,14 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
+{% extends "app/base.html" %}
 
-	<meta charset="utf-8">
-	<title>Index</title>
-</head>
-<body>
+{% block content %}
+<div id="content_div">
+	<div>
+		<h2>
+			Submit Issue:
+		</h2>
+		<form id="form_div" method="POST">
+			{% csrf_token %}
+			{{form.as_p}}
+			<input type="submit">
+		</form>
+	</div>
+</div>
 
-	<h1>hi hello</h1>
-	
+<script type="text/javascript">
 
-</body>
-</html>
+	var address = document.getElementById('id_address');
+	address.value = "{{user_address}}";
+	var state = document.getElementById('id_state');
+	state.value = "{{user_state}}";
+	var pincode = document.getElementById('id_pincode');
+	pincode.value = "{{user_pincode}}";
+	var discrict = document.getElementById('id_discrict');
+	discrict.value = "{{user_discrict}}";
+	console.log("{{user_address}}");
+
+</script>
+{% endblock %}

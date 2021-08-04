@@ -1,0 +1,84 @@
+
+
+<!-- 
+
+
+yellow = #F4ECA4
+
+green = #93e3ab
+
+black = #253136
+
+ -->
+
+
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+	body{
+		background-color: white;
+	}
+	body,h1,h2,h3,h4{
+		margin: 0px;
+		padding: 0px;
+	}
+	#body_div{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+
+	}
+	#header_div{
+		background-color: #93e3ab;
+		height: 50px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.auth_buttons{
+		padding:5px 10px;
+		margin: 10px;
+		text-decoration: none;
+		border: 2px solid #253136;
+		border-radius: 15px;
+		font-weight: bolder;
+		color: #253136;
+	}
+	#content_div{
+		display:flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	#form_div{
+		max-width: 700px;
+	}
+
+</style>
+
+<body >
+	<div id="body_div">
+		<div>
+		    <header id="header_div">
+			<div></div>
+			<div id="nav_button_div">
+
+				{% if user.is_authenticated%}
+				<a class="auth_buttons" href="{% url 'account_logout' %}">Logout</a>
+				{% else %}
+				<a class="auth_buttons" href="{% url 'account_login' %}">Login</a>
+				<a class="auth_buttons" href="{% url 'account_signup' %}">Sign In</a>
+				{% endif %}
+			</div>
+		    </header>
+	    </div>
+	    <div>
+		     {% block content %}
+             {% endblock %}
+	    </div>
+		
+	</div>
+
+</body>
+</html>

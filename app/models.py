@@ -2,9 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from allauth.account.forms import SignupForm
 from django import forms
+from django.contrib.auth.models import User
+
 
 class CustomUser(AbstractUser):
-    username = models.CharField(max_length=30, unique=False)
+    username = models.CharField(max_length=30,unique=False)
     company_name = models.CharField(max_length=100)
     phone = models.CharField(max_length=100,blank=False,null=False)
     address = models.TextField(max_length=300,blank=False,null=False)
@@ -33,3 +35,15 @@ class CustomSignupForm(SignupForm):
         user.company_name = self.cleaned_data['company_name']
         user.save()
         return user
+
+class IssueModel(models.Model):
+    issue = models.TextField(blank=False,null=False)
+    customer_name = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    address = models.TextField(blank=False,null=False)
+    state = models.CharField(max_length=200 ,blank=False,null=False)
+    district = models.CharField(max_length=200 , blank=False,null=False)
+    pincode = models.IntegerField(blank=False,null=False)
+    command = models.TextField()
+    owner_id = models.CharField(max_length=200)
+    selected = models.BooleanField(default=False)
+    picked = models.BooleanField(default=False)
