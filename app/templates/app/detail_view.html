@@ -1,0 +1,20 @@
+{% extends "app/base.html" %}
+
+{% block content %}
+{{detail.issue}}
+{% for owner in owners %}
+
+<h2>{{owner.username}}</h2>
+
+{{detail.selected}}
+
+<form method='POST'>
+
+	{% csrf_token %}
+	<input type="text" name="owner_id" value="{{owner.email}}">
+	<input type="submit">
+	
+</form>
+
+{% endfor %}
+{% endblock %}

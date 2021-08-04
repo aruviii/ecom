@@ -14,6 +14,8 @@ class CustomUser(AbstractUser):
     district = models.CharField(max_length=200, blank=False , null = False)
     pincode = models.CharField(max_length=200,blank = True , null = True)
     is_owner = models.BooleanField(blank = True , null = True)
+    def __str__(self):
+        return self.email
 
 class CustomSignupForm(SignupForm):
     phone = forms.CharField()
