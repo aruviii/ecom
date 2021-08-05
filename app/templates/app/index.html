@@ -8,14 +8,27 @@
 		</h2>
 		<form id="form_div" method="POST">
 			{% csrf_token %}
-			{{form.as_p}}
-			<input type="submit">
+			<!-- {{form.as_p}} -->
+ 			<label for="id_issue">Issue</label><br>
+			{{form.issue}}<br>
+			<label for="id_address">Address</label><br>
+			{{form.customer_name}}
+			{{form.address}}<br>
+			<label for="id_state">State</label><br>
+			{{form.state}}<br>
+			<label for="id_district">district</label><br>
+			{{form.district}}<br>
+			<label for="id_pincode">pincode</label><br>
+			{{form.pincode}}<br>
+			<div><input id="submit_button" class="submit_buttons" type="submit"> </div>
+			
 		</form>
 	</div>
 </div>
 
 <script type="text/javascript">
-
+	var issue = document.getElementById("id_issue");
+	issue.placeholder = "Type your issues here !";
 	var address = document.getElementById('id_address');
 	address.value = "{{user_address}}";
 	var state = document.getElementById('id_state');
@@ -24,8 +37,10 @@
 	pincode.value = "{{user_pincode}}";
 	var district = document.getElementById('id_district');
 	district.value = "{{user_district}}";
-
-	console.log("{{user_pincode}}");
+	var customer_name = document.getElementById('id_customer_name');
+	customer_name.style.display = "none";
+	
+	console.log()
 
 </script>
 

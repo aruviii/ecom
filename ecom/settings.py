@@ -52,7 +52,7 @@ SITE_ID = 1
 
 AUTH_USER_MODEL = 'app.CustomUser'
 
-# LOGIN_URL = 'accounts/login'
+LOGIN_URL = 'accounts/login'
 
 LOGIN_REDIRECT_URL = 'index'
 
@@ -63,6 +63,8 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 
 ACCOUNT_EMAIL_UNIQUE  = True 
+
+ACCOUNT_LOGOUT_REDIRECT_URL ="/accounts/login"
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'

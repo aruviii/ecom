@@ -1,8 +1,25 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-<h2>hi this is new list</h2>
+<h2>New Orders</h2>
 {% for data in list_datas %}
-{{data}}
+<div id="list_select_div">
+<h3>Issue:</h3> <p><i>{{data.issue}}</i></p>
+<h3>Customer Details:</h3>
+<p style="text-decoration:none;">
+E-mail : {{data.customer_name}}<br>
+Address : {{data.address}}, {{data.district}}- {{data.pincode}}, {{data.state}}
+</p>
+<form method="POST">
+	{% csrf_token %}
+	<input type="hidden" value="{{data.id}}" name="id">
+	<input id="submit_button" type="submit" value="Pick">
+</form> 
+</div>
+{% empty %}
+<div style="width:300px;margin-top:30px;">
+<h3>No new orders</h3>	
+</div>
+
 {% endfor %}
 {% endblock %}

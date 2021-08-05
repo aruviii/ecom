@@ -1,6 +1,23 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-<h3><a href="{% url 'old_list' %}">Old_list</a></h3>
-<h3><a href="{% url 'new_list' %}">New List</a></h3>
+<h2>Working Orders</h2>
+{% for item in picked_lists %}
+<div id="list_select_div">
+	<p>{{item.issue}}</p>
+	<p>Customer Id: {{item.customer_name}}</p>
+	<p>Address : {{item.address}}, {{item.district}}-{{item.pincode}}, {{item.state}} </p>
+	<form method="POST">
+		{% csrf_token %}
+		<input type="hidden" value="{{item.id}}" name="data_id">
+		<input id="un_pick"  type="submit" name="" value="Un pick">
+	</form>
+</div>
+{% empty %}
+<div style="margin-top:30px;">
+<h3>Orders haven't picked yet </h3>
+<p>See new orders , to pick order</p>
+</div>
+
+{% endfor %}
 {% endblock %}

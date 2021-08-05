@@ -6,6 +6,7 @@ from .views import (
 	owner_index,
 	new_list,
 	old_list,
+	home
 )
 urlpatterns = [
 	path('index/',index, name="index"),

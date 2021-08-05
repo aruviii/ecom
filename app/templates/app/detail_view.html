@@ -1,20 +1,64 @@
 {% extends "app/base.html" %}
 
 {% block content %}
-{{detail.issue}}
+<div class="detailed_issue" >
+<div>
+
+	<p id="issue_para">{{detail.issue}}</p>
+
+	{% if detail.selected %}
+	<p>Selected Shop : <span id="pick_point" >{{detail.picked}} </span><br>
+		Shop name : {{selected_owner.company_name}}<br>
+	    Name :{{selected_owner.username}}<br>
+	    E-mail : {{selected_owner.email}}<br>
+	    Phone : {{ selected_owner.phone }}<br>
+	    Location : {{ selected_owner.address }}, {{selected_owner.district}},<br>
+	    Pincode-{{selected_owner.pincode}}, {{selected_owner.state}} .<br>
+	  </p>
+	{% endif %}
+
+</div>
+{% if detail.selected %}
+<div id="issue_button_div">
+	<div></div>
+	<form method="POST" >
+		{% csrf_token %}
+		<input type="hidden" name="form_type" value="formOne">
+		<input id="un_select" type="submit" value="Un select" name="">
+	</form>
+</div>
+{% endif %}
+</div>
+<h3>Nearer to your place :</h3>
 {% for owner in owners %}
-
-<h2>{{owner.username}}</h2>
-
-{{detail.selected}}
+<div class="detailed_issue">
+<h3>Shop name : {{owner.company_name}}</h3>
+<p>Owner : {{owner.username}}</p>
+<p>E-mail : {{owner.email}}</p>
+<p>Phone : {{owner.phone}}</p>
+<p>Address : {{owner.address}}, {{owner.address}}-{{owner.address}},{{owner.address}} </p>
 
 <form method='POST'>
-
 	{% csrf_token %}
-	<input type="text" name="owner_id" value="{{owner.email}}">
-	<input type="submit">
-	
+	<input type="hidden" name="form_type" value="formTwo">
+	<input type="hidden" name="owner_id" value="{{owner.email}}">
+	<input onLoad="myFun()" id="submit_button" type="submit" value="Select">
 </form>
+</div>
+<script type="text/javascript">
+	function myFun(){
+		console.log("loaded")
+	}
+	var pick_point = document.getElementById("pick_point");
+	if("{{detail.picked}}"=="True"){
+		pick_point.innerHTML = "order picked";
+		pick_point.style.color = "green";
+	}
+	else{
 
+		pick_point.innerHTML = "not picked yet";
+		pick_point.style.color = "red";
+	}
+</script>
 {% endfor %}
 {% endblock %}

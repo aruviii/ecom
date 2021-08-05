@@ -21,12 +21,18 @@ black = #253136
 	body,h1,h2,h3,h4{
 		margin: 0px;
 		padding: 0px;
+		color: #253136 ;
 	}
 	#body_div{
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
-
+	}
+	#content_block{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
 	}
 	#header_div{
 		background-color: #93e3ab;
@@ -37,7 +43,7 @@ black = #253136
 		align-items: center;
 	}
 	.auth_buttons{
-		padding:5px 10px;
+		padding:10px 10px;
 		margin: 10px;
 		text-decoration: none;
 		border: 2px solid #253136;
@@ -54,6 +60,136 @@ black = #253136
 	#form_div{
 		max-width: 700px;
 	}
+	label{
+      color:#253136 ;
+      padding: 10px;
+      margin: 2px;
+      font-weight: bolder;
+
+    }
+	input,textarea,p{
+      color:#253136 ;
+      padding: 10px;
+      margin: 7px;
+      font-weight: bolder;
+      width: 400px;
+    }
+
+    label{
+      font-size: 18px;
+    }
+
+    input,textarea{
+      border-radius: 15px;
+      border: 2px solid #253136;
+      font-weight: bolder;
+      background-color: rgb(210 243 220);
+    }
+    .submit_buttons{
+      padding: 10px;
+      margin: 10px;
+      border: 2px solid  #253136;
+      border-radius: 15px;
+      font-weight: bolder;
+      text-decoration: none;
+      color: #253136;
+      background-color: #93e3ab;
+
+    }
+
+    #submit_button{
+      background-color: #F4ECA4 ;
+      width: 100px;
+    }
+
+    #list_div{
+    	padding: 20px 10px;
+    	border : 2px solid #93e3ab ;
+    	margin :20px;
+    	max-width: 500px;
+    	min-width: 450px;
+    	min-height: 100px;
+    	border-radius: 15px;
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: space-between;
+    }
+
+    #issue_top{
+    	color: #253136;
+    }
+
+    #view_div{
+    	display: flex;
+    	flex-direction: row;
+    	justify-content: space-between;
+    }
+    #view_button{
+    	padding :10px 20px;
+    	margin-right: 20px;
+    	border-radius: 15px;
+    	border: 2px solid #253136;
+    	background-color: #F4ECA4 ;
+    	text-decoration: none;
+    	font-weight: bolder;
+    	color: #253136 ;
+
+    }
+    .detailed_issue{
+    	padding : 20px ;
+    	margin: 20px;
+    	border: 2px solid #93e3ab ;
+    	width: 500px;
+    	min-height: 150px;
+    	border-radius: 15px;
+    }
+    #issue_para{
+    	font-weight: lighter;
+    	font-size: 17px;
+    }
+    .detailed_issue{
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: space-between;
+    }
+    #issue_button_div{
+    	display: flex;
+    	flex-direction: row;
+    	justify-content: space-between;
+    }
+
+    #un_select{
+
+    	background-color: #FC737A;
+    	width: 100px;
+
+    }
+    #un_pick{
+
+    	background-color: #FC737A;
+    	width: 100px;
+
+    }
+    .nav_buttons{
+    	text-decoration: none;
+    	font-weight: bolder;
+    	padding: 10px;
+    	color: #253136 ;
+    }
+
+    .nav_buttons:hover{
+    	text-decoration: underline;
+    }
+
+    #list_select_div{
+    	display: flex;
+    	flex-direction: column;
+    	border :2px solid #93e3ab;
+    	border-radius: 15px;
+    	padding: 10px;
+    	margin: 10px;
+    	width: 500px;
+    }
 
 </style>
 
@@ -65,6 +201,13 @@ black = #253136
 			<div id="nav_button_div">
 
 				{% if user.is_authenticated%}
+				{% if user.is_owner %}
+				<a class="nav_buttons" href="{% url 'owner_index' %}">Main</a>
+				<a class="nav_buttons" href="{% url 'new_list' %}">New</a>
+				{% else %}
+				<a class="nav_buttons" href="{% url 'index' %}">Submit issue</a>
+				<a class="nav_buttons" href="{% url 'my_request' %}">my request</a>
+				{% endif %}
 				<a class="auth_buttons" href="{% url 'account_logout' %}">Logout</a>
 				{% else %}
 				<a class="auth_buttons" href="{% url 'account_login' %}">Login</a>
@@ -73,7 +216,7 @@ black = #253136
 			</div>
 		    </header>
 	    </div>
-	    <div>
+	    <div id="content_block">
 		     {% block content %}
              {% endblock %}
 	    </div>
