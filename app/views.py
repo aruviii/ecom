@@ -7,7 +7,7 @@ from django.db import transaction
 from django.contrib.auth.decorators import login_required
 
 def home(request):
-	return(request,'app/home.html')
+	return render(request,'app/home.html')
 
 @login_required(login_url='/accounts/login/')
 def index(request):

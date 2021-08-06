@@ -9,6 +9,7 @@ from .views import (
 	home
 )
 urlpatterns = [
+	path('home/',home,name="home"),
 	path('index/',index, name="index"),
 	path('myreq/',myRequest, name="my_request"),
 	path('dt_view/<int:id>/',detail_view,name='detail_view'),

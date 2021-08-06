@@ -45,6 +45,11 @@
 	<input onLoad="myFun()" id="submit_button" type="submit" value="Select">
 </form>
 </div>
+{% empty %}
+<div><h3> No service centre near you </h3></div>
+
+{% endfor %}
+
 <script type="text/javascript">
 	function myFun(){
 		console.log("loaded")
@@ -60,5 +65,4 @@
 		pick_point.style.color = "red";
 	}
 </script>
-{% endfor %}
 {% endblock %}
