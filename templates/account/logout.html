@@ -9,7 +9,7 @@
 
 
 
-  <form method="post" action="{% url 'account_logout' %}">
+  <form id="logout_form" method="post" action="{% url 'account_logout' %}">
   <div id="logout_div">
   <h1>{% trans "Sign Out" %}</h1>
   <p>{% trans 'Are you sure you want to sign out?' %}</p>
@@ -17,9 +17,9 @@
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
   {% endif %}
-  <div>
+  <div id="logout_button_div">
     <button id="submit_button" class="submit_buttons" type="submit">{% trans 'Sign Out >>' %}</button>
-    <a  class="submit_buttons"  id="" href="">Cancel</a>
+    <a  class="submit_buttons"  id="" href="{% url 'index' %}">Cancel</a>
   </div>
   
   </div>

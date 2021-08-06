@@ -14,6 +14,10 @@ black = #253136
 
 <!DOCTYPE html>
 <html>
+<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{title}}</title>
+</head>
 <style type="text/css">
 	body{
 		background-color: white;
@@ -67,12 +71,16 @@ black = #253136
       font-weight: bolder;
 
     }
-	input,textarea,p{
+	input,textarea{
       color:#253136 ;
       padding: 10px;
       margin: 7px;
       font-weight: bolder;
       width: 400px;
+    }
+
+    p{
+    	color:#253136 ;
     }
 
     label{
@@ -190,6 +198,35 @@ black = #253136
     	margin: 10px;
     	width: 500px;
     }
+
+    @media screen and (max-width: 500px){
+
+    	input,textarea{
+    		width: 70vw;
+
+    	}
+
+    	textarea{
+    		height: 100px;
+    	}
+
+    	#list_div{
+    		width: 80vw;
+    		min-width:0px;
+    	}
+
+    	.detailed_issue{
+    		width: 80vw;
+    	}
+
+    	#list_select_div{
+    		width: 90vw;
+    	}
+    	p{
+    		width: none;
+    	}
+
+		}
 
 </style>
 

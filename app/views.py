@@ -40,6 +40,7 @@ def index(request):
 @login_required(login_url='/accounts/login/')
 def myRequest(request):
 	context = {
+	'title' : "My Requests",
 	"list" : IssueModel.objects.filter(customer_name=request.user)
 	}
 	return render(request,'app/my_request.html',context)
@@ -57,6 +58,7 @@ def detail_view(request,id):
 	instance = IssueModel.objects.get(id=id)
 	form = IssueForm(instance=instance)
 	context = {
+	'title' : "Detailed Issue",
 	'detail':IssueModel.objects.get(id=id),
 	'owners':CustomUser.objects.filter(is_owner=True,pincode=request.user.pincode),
 	'form' : form,
@@ -81,6 +83,7 @@ def detail_view(request,id):
 def owner_index(request):
 	instance = IssueModel.objects.filter(selected=True,owner_id=request.user.email,picked=True)
 	context = {
+	'title' : "Working Orders",
 	'picked_lists' : instance
 	}
 	if request.method == "POST":
@@ -96,6 +99,7 @@ def owner_index(request):
 def new_list(request):
 	list_data = IssueModel.objects.filter(selected=True,owner_id=request.user.email,picked=False)
 	context = {
+	'title' : "New Orders",
 	"list_datas" : list_data ,
 	}
 
